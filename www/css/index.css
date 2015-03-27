@@ -1,16 +1,11 @@
-#app {
-    
-}
-
-nav {
-    width: 100%;
-    
-}
-
-.show {
+.active{
     display: block;
 }
 
-.hidden {
+.show{
+    display: block;
+}
+
+.hidden{
     display: none;
 }

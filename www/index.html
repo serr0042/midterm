@@ -14,27 +14,15 @@
     </head>
     <body>
         <div class="app">
-            <div class="navButtons">
-            <button id="homeButton">Home</button>
-            <button id="mapButton">Map</button>
+            <nav>
+            <ul class="tab">
+                <li class="tab"><a href="#contactDiv" data-role="pagelink" id="contactTab" class="activetab">Home</a></li>
+                <li class="tab"><a href="#mapDiv" data-role="pagelink" id="mapTab" class="">Map</a></li>
+                </ul>
             
-            </div>
-
-<div data-role="page" id="home" class="show">
-  <div data-role="content">
-    <h3>Contacts</h3>
-      <div id="newPerson"></div>
-  </div>
-</div>
-    
-<div data-role="page" id="map" class="hidden">
-  <div data-role="content">
-    <h3>Map</h3>
-    <div id="output">
-      
-      </div>
-  </div>
-</div>
+            </nav>
+            <div data-role="page" id="contactDiv" class="">Contacts</div>
+            <div data-role="page" id="mapDiv" class="hidden">Map</div>
 
 
 
