@@ -1,4 +1,4 @@
-var pages = [], links [];
+var pages = [], links = [];
 var numLinks = 0;
 var numPages = 0;
 var pageTime = 800;
@@ -24,8 +24,25 @@ document.addEventListener("DOMContentLoaded", function(){
         pages[p].addEventListener("pageshow", handlePageShow, false);
     }
     loadPage(null);
+    detectTouchSupport();
+});
+      
+function detectTouchSupport(){
+    msGesture = navigator && navigator.msPointerEnabled && navigator.msMaxTouchPoints > 0 && MSGesture;
+    touchSupport = (("ontouchstart" in window) || msGesture || (window.DocumentTouch && document instanceof DocumentTouch));
+    return touchSupport;
 };
-                          
+
+function touchHandler(ev){
+    if(ev.type == "touchend"){
+        ev.preventDefault();
+        var touch = ev.changedTouches[0];
+        var newEvt = document.createEvent("MouseEvent");
+        newEvt.initMouseEvent("click",true,true,window,1,touch.screenX,touch.screenY,touch.clientX,touch.clientY);
+        ev.currentTarget.dispatchEvent(newEvt);
+    }
+};
+
 function handleNav(ev){
     ev.preventDefault();
     var href = ev.target.href;
@@ -60,4 +77,26 @@ function loadPage(url){
             }
         }
     }
+};
+
+function addDispatch(num){
+    pages[num].dispatchEvent(pageshow);
+};
+
+function findContact(){
+    var options = new ContactFindOptions();
+    options.filter = "";
+    options.multiple = true;
+    var fields = ["displayName", "name", "phoneNumber"];
+    navigator.contacts.find(fields, onSuccess, onError, options);
+};
+
+function onSuccess(contacts){
+    var c = Math.floor(Math.random() * contacts.length);
+    var newPerson = document.getElementById("newPerson");
+    newPerson.innerHTML = "Name:" + contacts[c].name.formatted;
+};
+
+function onError(contactError){
+    console.log("ERROR");
 };
