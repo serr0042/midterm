@@ -1,39 +1,17 @@
-var pages = [], links = [];
-var numLinks = 0;
-var numPages = 0;
-var pageTime = 800;
 var lat;
 var long;
-
-
-
-
-
-var pageshow = document.createEvent("CustomEvent");
-pageshow.initEvent("pageshow", false, true);
 
 document.addEventListener("deviceready", function(){
     findContact();
 });
 
 document.addEventListener("DOMContentLoaded", function(){
-    pages = document.querySelectorAll('[data-role="page"]');
-    numPages = pages.length;
-    links = document.querySelectorAll('[data-role="pagelink"]');
-    numLinks = links.length;
-    
-    for(var i=0; i<numLinks; i++){
-        links[i].addEventListener("click", handleNav, false);
-    }
-    
-    for(var p=0; p<numPages; p++){
-        pages[p].addEventListener("pageshow", handlePageShow, false);
-    }
-    loadPage(null);
     detectTouchSupport();
-    getLocation();
-});
     
+    getLocation();
+    
+});
+
 function detectTouchSupport(){
     msGesture = navigator && navigator.msPointerEnabled && navigator.msMaxTouchPoints > 0 && MSGesture;
     touchSupport = (("ontouchstart" in window) || msGesture || (window.DocumentTouch && document instanceof DocumentTouch));
@@ -49,47 +27,6 @@ function touchHandler(ev){
         ev.currentTarget.dispatchEvent(newEvt);
     }
 };
-
-function handleNav(ev){
-    ev.preventDefault();
-    var href = ev.target.href;
-    var parts = href.split("#");
-    loadPage(parts[1]);
-    return false;
-};
-
-function handlePageShow(ev){
-    ev.target.className = "active";
-};
-
-function loadPage(url){
-    if(url == null){
-        pages[0].className = "active";
-        history.replaceState(null, null, "#contactDiv");
-    }else{
-        for(var i=0; i<numPages; i++)
-        {
-            pages[i].className = "hidden";
-            
-            if(pages[i].id == url){
-                pages[i].className = "show";
-                history.pushState(null, null, "#" + url);
-                setTimeout(addDispatch, 50, i);
-            }
-        }
-        for(var t=0; t<numLinks; t++){
-            links[t].className = "";
-            if(links[t].href == location.href){
-                links[t].className = "activetab";
-            }
-        }
-    }
-};
-
-function addDispatch(num){
-    pages[num].dispatchEvent(pageshow);
-};
-
 function findContact(){
     var options = new ContactFindOptions();
     options.filter = "";
@@ -108,11 +45,6 @@ function onError(contactError){
     console.log("ERROR");
 };
 
-var mapClick = document.getElementById("tabTwo");
-
-mapClick.addEventListener("onclick", function() {
-     
-});
 
 function getLocation(){
     if(navigator.geolocation){
@@ -126,6 +58,7 @@ function getLocation(){
 function reportPosition(position){
     lat = position.coords.latitude;
     long = position.coords.longitude;
+    createCanvas();
 };
 
 function gpsError(error){
@@ -137,15 +70,22 @@ function gpsError(error){
     alert("Error: " + errors[error.code]);
 }
 
-function initialize(){
-
-var mapOptions = {
-    center: new google.maps.LatLng(lat, long),
-    zoom: 8
+function createCanvas()
+{
+    var div = document.getElementById( "map-canvas" );
+    var canvas = document.createElement( "canvas" );
+    canvas.setAttribute( "width", "400" );
+    canvas.setAttribute( "height", "400" );
+    div.appendChild( canvas );
+    var context = canvas.getContext( "2d" );
+    var img = new Image( 400,400 );
     
-}
-var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    img.onload = function()
+    {
+        context.drawImage( img, 0, 0 );
+    }
     
+    img.src = "http://maps.googleapis.com/maps/api/staticmap?&zoom=14&size=400x400&maptype=roadmap&markers=color:blue%7Clabel:A%7C"+lat+","+long+"&center="+lat+","+long;
 };
-google.maps.event.addDomListener(window, 'load', initialize);
+
 
