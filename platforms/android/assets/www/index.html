@@ -1,58 +1,51 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-<!--        <link rel="stylesheet" type="text/css" href="css/index.css" />-->
-        <link rel="stylesheet" type="text/css" href="css/index.css"/>
-        <link href="http://fonts.googleapis.com/css?family=Slabo+27px|Roboto:400,100,700" rel="stylesheet" type="text/css"/>
-        <title>Serr0042</title>
-    </head>
-    <body>
-        <div class="app">
-            <nav>
-<ul class="tabs">
-    <li class="tab"><a href="#home" data-role="pagelink" id ="svg" class="activetab"><img src="img/home@2x.png"/></a></li>
-    <li class="tab"><a href="#map" data-role="pagelink" id="svg" class=""><img src="img/map-marker2@2x.png"/></a></li>
-    <li class="tab"><a href="#contact" data-role="pagelink" id="svg" class=""><img src="img/adress-book2@2x.png"/></a></li>
-</ul>
-</nav>
 
-<div data-role="page" id="home" class="">
-  <div data-role="content">
-    <h3>Everything is Awesome!</h3>
-    <p>Everything is awesome. Everything is cool when you're part of a team. Everything is awesome when we're living our dream.</p>
-    <p>Everything is better when we stick together. Side by side, you and I gonna win forever, let's party forever. We're the same, I'm like you, you're like me, we're all working in harmony.</p>
-    <p>Everything is awesome. Everything is cool when you're part of a team. Everything is awesome when we're living our dream.</p>
-    <p>Have you heard the news, everyone's talking. Life is good 'cause everything's awesome. Lost my job, it's a new opportunity. More free time for my awesome community.</p>
-    <p>I feel more awesome than an awesome possum. Dip my body in chocolate frostin'. Three years later, wash off the frostin'. Smellin' like a blossom, everything it awesome. Stepped in mud, got new brown shoes. It's awesome to win, and it's awesome to lose.</p>
-  </div>
-</div>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>Serr0042</title>
+</head>
+
+<body>
+    <nav>
+        <button id="back">Back</button>
+    </nav>
     
-<div data-role="page" id="map" class="hidden">
-  <div data-role="content">
-    <h3>Map</h3>
-    <div id="output">
-      
-      </div>
-  </div>
-</div>
-
-<div data-role="page" id="contact" class="hidden">
-  <div data-role="content">
-    <h3>Contact</h3>
-    <div id="newPerson"></div>
-  </div>
-</div>
+    <div data-role="list">
+        <h3>Contacts</h3>
+        <div id="contactsList">
+            <ul id="conL"></ul>
         </div>
-<!--        <script src="script.js"></script>-->
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        
-        
-    </body>
+    </div>
+    
+    
+    <div data-role="overlay">&nbsp;</div>
+  
+    <div data-role="modal">
+        <h3 id="name"></h3>
+        <h4 id="num"></h4>
+        <button id="cancel" type="reset">Back</button>
+    </div>
+    
+    <div data-role="map">
+        <div id="map-canvas"></div>
+    </div>
+    
+
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/hammer.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8FskiWRq5MZiVqdfiQentScgeGLGX4F0
+&sensor=false"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+
+</body>
+
 </html>

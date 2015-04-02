@@ -1,35 +1,51 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-<!--        <link rel="stylesheet" type="text/css" href="css/index.css" />-->
-        <link rel="stylesheet" type="text/css" href="css/index.css"/>
-        <link href="http://fonts.googleapis.com/css?family=Slabo+27px|Roboto:400,100,700" rel="stylesheet" type="text/css"/>
-        <title>Serr0042</title>
-    </head>
-    <body>
-        <div class="app">
-            <nav>
-                <a href='index.html'><button id="contactBtn" >Contacts</button></a>
-           <a href="map.html"><button id="mapBtn">Map</button></a>
-        
-            
-            </nav>
-            <h3>Contacts</h3>
-            <div id="newPerson"></div>
-            </div>
-            
 
-<!--        <script src="script.js"></script>-->
-        
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index2.js"></script>
-        
-        
-    </body>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>Serr0042</title>
+</head>
+
+<body>
+    <nav>
+        <button id="back">Back</button>
+    </nav>
+    
+    <div data-role="list">
+        <h3>Contacts</h3>
+        <div id="contactsList">
+            <ul id="conL"></ul>
+        </div>
+    </div>
+    
+    
+    <div data-role="overlay">&nbsp;</div>
+  
+    <div data-role="modal">
+        <h3 id="name"></h3>
+        <h4 id="num"></h4>
+        <button id="cancel" type="reset">Back</button>
+    </div>
+    
+    <div data-role="map">
+        <div id="map-canvas"></div>
+    </div>
+    
+
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/hammer.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8FskiWRq5MZiVqdfiQentScgeGLGX4F0
+&sensor=false"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+
+</body>
+
 </html>
